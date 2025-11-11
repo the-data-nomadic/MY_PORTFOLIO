@@ -1,15 +1,38 @@
-@import 'https://fonts.googleapis.com/css?family=Roboto+Mono:100';
+/* =========================
+   Google Fonts Imports
+========================= */
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:100');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
 
+/* =========================
+   Tailwind Import (CDN or PostCSS)
+========================= */
+@import 'tailwindcss';
+
+/* =========================
+   Root Variables
+========================= */
+:root {
+    --red: #4169E1;
+    --bgColor: #0D0D0D; /* Dark minimal background */
+    --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+    --color-primary: #3B82F6; /* Electric blue accent */
+    --color-primary-content: #F2F2F2;
+}
+
+/* =========================
+   Base HTML Styling
+========================= */
 html, body {
     font-family: 'Roboto Mono', monospace;
-    background: #212121;
+    background-color: var(--bgColor);
+    color: var(--color-primary-content);
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Prevent horizontal scrollbar */
+    overflow-x: hidden;
     box-sizing: border-box;
 }
 
@@ -17,17 +40,20 @@ html, body {
     box-sizing: inherit;
 }
 
+/* =========================
+   Navbar
+========================= */
 .navbar {
-    background-color: #333;
+    background-color: #1a1a1a;
     padding: 14px 16px;
     position: fixed;
     width: 100%;
     top: 0;
     display: flex;
-    justify-content: space-between; /* Space between left and right sections */
-    align-items: center; /* Vertically center the content */
+    justify-content: space-between;
+    align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 10; /* Ensure navbar is above other elements */
+    z-index: 10;
 }
 
 .navbar-left {
@@ -36,9 +62,9 @@ html, body {
 }
 
 .flag {
-    width: 25px; /* Adjust the size of the flag */
+    width: 25px;
     height: auto;
-    margin-right: 20px; /* Space between the flag and text */
+    margin-right: 20px;
 }
 
 .navbar-left span {
@@ -46,7 +72,6 @@ html, body {
     font-size: 16px;
 }
 
-/* Navbar links */
 .navbar-right a {
     display: inline-block;
     color: #f2f2f2;
@@ -58,183 +83,192 @@ html, body {
     font-size: 16px;
 }
 
-.navbar-right a:hover, .navbar-right a.active {
+.navbar-right a:hover,
+.navbar-right a.active {
     background-color: #ddd;
     color: black;
 }
 
+/* =========================
+   Hero Section
+========================= */
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding: 0 20px;
+    flex-direction: column;
+}
+
+.hero-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero-mission {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* =========================
+   Buttons
+========================= */
+.btn {
+    @apply inline-flex items-center justify-center gap-2 cursor-pointer font-semibold rounded transition-colors;
+    padding: var(--btn-py, 0.875rem) var(--btn-px, 1.25rem);
+    font-size: var(--btn-font-size, 0.875rem);
+    background-color: var(--color-primary);
+    color: var(--color-primary-content);
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #2563EB;
+}
+
+.btn-outline {
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background-color: var(--color-primary);
+    color: var(--color-primary-content);
+}
+
+/* =========================
+   Profile Picture
+========================= */
 .profile-picture-container {
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center-align the content */
-    margin-bottom: 20px; /* Space below the profile picture */
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .profile-picture {
-    width: 300px; /* Adjust the size of the profile picture */
+    width: 300px;
     height: 300px;
-    border-radius: 50%; /* Make it circular */
-    object-fit: cover; /* Ensure the image covers the circle */
-    margin-top: 20px; /* Add space above the image */
-    box-shadow: -50px -50px 0 -40px var(--red), 50px 50px 0 -40px var(--red); /* Add shadow to restore frame effect */
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 20px;
+    box-shadow: -50px -50px 0 -40px var(--red), 50px 50px 0 -40px var(--red);
 }
 
+/* =========================
+   Introduction
+========================= */
 .introduction-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Center content vertically */
-    min-height: 20px; /* Adjust height as needed */
-    text-align: center; /* Center-align text within the container */
-    margin: 0 auto; /* Center container horizontally */
-    padding: 20px; /* Reduced padding for better readability */
-    margin-top: -100px; /* Reduced space above the introduction */
+    justify-content: center;
+    min-height: 20px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: -100px;
 }
 
 .introduction {
-    font-family: 'Roboto Mono', monospace; /* Different font for introduction */
-    max-width: 800px; /* Limit the width for better readability */
-    color: #FAFAFA; /* Set text color to white */
-    font-size: 20px; /* Adjust font size for readability */
-    text-align: center; /* Center the text */
-    margin: 5px; /* Reduced margin for better spacing */
+    font-family: 'Roboto Mono', monospace;
+    max-width: 800px;
+    color: #FAFAFA;
+    font-size: 20px;
+    text-align: center;
+    margin: 5px;
 }
 
-:root {
-  --red: #4169E1;
-  --bgColor: bisque;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* =========================
+   Typed Effect
+========================= */
 .wrapper {
-  margin-top: 20px;
-  height: 30vh;
-  width: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Roboto Slab', serif;
-  color: #ffffff;
-  font-size: 20px; 
+    margin-top: 20px;
+    height: 30vh;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto Slab', serif;
+    color: #ffffff;
+    font-size: 20px; 
 }
 
 .effect-wrapper {
-  text-align: center;
-  font-weight: normal;
+    text-align: center;
+    font-weight: normal;
 }
 
 #typed {
-  font-weight: bold;
-  color: #4169E1;
+    font-weight: bold;
+    color: var(--color-primary);
 }
 
 .cursor {
-  display: inline-block;
-  background-color: #b0ff95;
-  animation: blinker 900ms infinite;
-}
-
-.cursor.typing-true {
-  animation: none;
+    display: inline-block;
+    background-color: #b0ff95;
+    animation: blinker 900ms infinite;
 }
 
 @keyframes blinker {
-  0% { background-color: #4169E1; }
-  50% { background-color: transparent; }
-  100% { background-color: #4169E1; }
+    0% { background-color: var(--color-primary); }
+    50% { background-color: transparent; }
+    100% { background-color: var(--color-primary); }
 }
 
-/* Define a custom class for extra bold text */
+/* =========================
+   Extra Fonts & Social Icons
+========================= */
 .extra-bold { font-family: 'Montserrat', sans-serif; }
 
 .social-links {
-  display: flex;
-  justify-content: center; /* Center-align the icons */
-  margin-top: 80px; /* Add space above the icons */
-  flex-wrap: wrap; /* Allow icons to wrap on small screens */
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+    flex-wrap: wrap;
 }
 
 .social-icon {
-  width: 45px; /* Adjust the size of the icons */
-  height: 45px;
-  margin: 10px; /* Space around the icons for better wrapping */
-  transition: transform 0.3s; /* Add a transition effect */
+    width: 45px;
+    height: 45px;
+    margin: 10px;
+    transition: transform 0.3s;
 }
 
 .social-icon:hover {
-  transform: scale(1.2); /* Scale up the icon on hover */
+    transform: scale(1.2);
 }
 
-/* Responsive adjustments */
+/* =========================
+   Responsive
+========================= */
 @media (max-width: 768px) {
-  .navbar-right {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center align the links */
-  }
-
-  .navbar-right a {
-    padding: 10px;
-    font-size: 14px;
-    width: 100%; /* Make links take full width */
-    text-align: center; /* Center align text */
-  }
-
-  .profile-picture {
-    width: 200px; /* Adjust the size of the profile picture */
-    height: 200px;
-  
-  }
-
-  .introduction {
-    font-size: 18px; /* Adjust font size for smaller screens */
-  margin-bottom: 100px;
-    margin-top: 20px;
-  }
-
-  .social-links {
-    margin-top: 20px; /* Reduce space above icons */
-  }
-
-  .social-icon {
-    width: 35px; /* Adjust the size of the icons */
-    height: 35px;
-  }
-
+    .navbar-right { flex-direction: column; align-items: center; }
+    .navbar-right a { padding: 10px; font-size: 14px; width: 100%; text-align: center; }
+    .profile-picture { width: 200px; height: 200px; }
+    .introduction { font-size: 18px; margin-top: 20px; margin-bottom: 100px; }
+    .social-icon { width: 35px; height: 35px; }
 }
 
 @media (max-width: 480px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .navbar-left, .navbar-right {
-    width: 100%;
-    justify-content: center;
-    padding: 10px;
-  }
-
-  .profile-picture {
-    width: 200px; /* Adjust the size of the profile picture */
-    height: 200px;
-    
-  }
-
-  .introduction {
-    font-size: 16px; /* Adjust font size for smaller screens */
-    margin-bottom: 25px;
-    margin-top: 250px;
-  }
-
-  .social-icon {
-    width: 30px; /* Adjust the size of the icons */
-    height: 30px;
-  }
-  
+    .navbar { flex-direction: column; align-items: flex-start; }
+    .navbar-left, .navbar-right { width: 100%; justify-content: center; padding: 10px; }
+    .profile-picture { width: 200px; height: 200px; }
+    .introduction { font-size: 16px; margin-top: 250px; margin-bottom: 25px; }
+    .social-icon { width: 30px; height: 30px; }
 }
