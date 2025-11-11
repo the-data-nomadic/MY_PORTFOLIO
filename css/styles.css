@@ -1,274 +1,33 @@
-/* =========================
-   Google Fonts Imports
-========================= */
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:100');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+/* --- Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&family=Montserrat:wght@700&family=Roboto+Slab:wght@700&display=swap');
 
-/* =========================
-   Tailwind Import (CDN or PostCSS)
-========================= */
-@import 'tailwindcss';
-
-/* =========================
-   Root Variables
-========================= */
-:root {
-    --red: #4169E1;
-    --bgColor: #0D0D0D; /* Dark minimal background */
-    --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
-    --color-primary: #3B82F6; /* Electric blue accent */
-    --color-primary-content: #F2F2F2;
-}
-
-/* =========================
-   Base HTML Styling
-========================= */
-html, body {
+/* --- Body & Default Styles --- */
+body {
     font-family: 'Roboto Mono', monospace;
-    background-color: var(--bgColor);
-    color: var(--color-primary-content);
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    box-sizing: border-box;
 }
 
-*, *::before, *::after {
-    box-sizing: inherit;
+/* --- Typed Cursor --- */
+.typed-cursor {
+    color: #3B82F6; /* electric blue */
+    animation: blink 0.8s infinite;
 }
 
-/* =========================
-   Navbar
-========================= */
-.navbar {
-    background-color: #1a1a1a;
-    padding: 14px 16px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 10;
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
-.navbar-left {
-    display: flex;
-    align-items: center;
+/* --- Extra custom font classes --- */
+.font-montserrat { font-family: 'Montserrat', sans-serif; }
+.font-roboto-slab { font-family: 'Roboto Slab', serif; }
+
+/* --- Navbar Active Link Override --- */
+nav a.active {
+    color: #3B82F6; /* Tailwind blue-500 */
 }
 
-.flag {
-    width: 25px;
-    height: auto;
-    margin-right: 20px;
-}
-
-.navbar-left span {
-    color: #f2f2f2;
-    font-size: 16px;
-}
-
-.navbar-right a {
-    display: inline-block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 20px;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: background-color 0.3s, color 0.3s;
-    font-size: 16px;
-}
-
-.navbar-right a:hover,
-.navbar-right a.active {
-    background-color: #ddd;
-    color: black;
-}
-
-/* =========================
-   Hero Section
-========================= */
-.hero-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-    padding: 0 20px;
-    flex-direction: column;
-}
-
-.hero-name {
-    font-family: 'Inter', sans-serif;
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
-.hero-mission {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.25rem;
-    max-width: 700px;
-    margin: 0 auto 40px auto;
-    line-height: 1.6;
-}
-
-.hero-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-/* =========================
-   Buttons
-========================= */
-.btn {
-    @apply inline-flex items-center justify-center gap-2 cursor-pointer font-semibold rounded transition-colors;
-    padding: var(--btn-py, 0.875rem) var(--btn-px, 1.25rem);
-    font-size: var(--btn-font-size, 0.875rem);
-    background-color: var(--color-primary);
-    color: var(--color-primary-content);
-    text-decoration: none;
-}
-
-.btn:hover {
-    background-color: #2563EB;
-}
-
-.btn-outline {
-    border: 2px solid var(--color-primary);
-    color: var(--color-primary);
-    background: transparent;
-}
-
-.btn-outline:hover {
-    background-color: var(--color-primary);
-    color: var(--color-primary-content);
-}
-
-/* =========================
-   Profile Picture
-========================= */
-.profile-picture-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.profile-picture {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-top: 20px;
-    box-shadow: -50px -50px 0 -40px var(--red), 50px 50px 0 -40px var(--red);
-}
-
-/* =========================
-   Introduction
-========================= */
-.introduction-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 20px;
-    text-align: center;
-    margin: 0 auto;
-    padding: 20px;
-    margin-top: -100px;
-}
-
-.introduction {
-    font-family: 'Roboto Mono', monospace;
-    max-width: 800px;
-    color: #FAFAFA;
-    font-size: 20px;
-    text-align: center;
-    margin: 5px;
-}
-
-/* =========================
-   Typed Effect
-========================= */
-.wrapper {
-    margin-top: 20px;
-    height: 30vh;
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Roboto Slab', serif;
-    color: #ffffff;
-    font-size: 20px; 
-}
-
-.effect-wrapper {
-    text-align: center;
-    font-weight: normal;
-}
-
-#typed {
-    font-weight: bold;
-    color: var(--color-primary);
-}
-
-.cursor {
-    display: inline-block;
-    background-color: #b0ff95;
-    animation: blinker 900ms infinite;
-}
-
-@keyframes blinker {
-    0% { background-color: var(--color-primary); }
-    50% { background-color: transparent; }
-    100% { background-color: var(--color-primary); }
-}
-
-/* =========================
-   Extra Fonts & Social Icons
-========================= */
-.extra-bold { font-family: 'Montserrat', sans-serif; }
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    margin-top: 80px;
-    flex-wrap: wrap;
-}
-
-.social-icon {
-    width: 45px;
-    height: 45px;
-    margin: 10px;
-    transition: transform 0.3s;
-}
-
-.social-icon:hover {
-    transform: scale(1.2);
-}
-
-/* =========================
-   Responsive
-========================= */
-@media (max-width: 768px) {
-    .navbar-right { flex-direction: column; align-items: center; }
-    .navbar-right a { padding: 10px; font-size: 14px; width: 100%; text-align: center; }
-    .profile-picture { width: 200px; height: 200px; }
-    .introduction { font-size: 18px; margin-top: 20px; margin-bottom: 100px; }
-    .social-icon { width: 35px; height: 35px; }
-}
-
-@media (max-width: 480px) {
-    .navbar { flex-direction: column; align-items: flex-start; }
-    .navbar-left, .navbar-right { width: 100%; justify-content: center; padding: 10px; }
-    .profile-picture { width: 200px; height: 200px; }
-    .introduction { font-size: 16px; margin-top: 250px; margin-bottom: 25px; }
-    .social-icon { width: 30px; height: 30px; }
-}
+/* --- Optional small custom tweaks --- */
+img.rounded-full { border-radius: 9999px; }
+img.shadow-lg { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); }
+a:hover { transition: transform 0.2s; }
+a:hover img { transform: scale(1.25); }
